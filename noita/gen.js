@@ -6,8 +6,12 @@ const AP_2 = document.getElementById("ap_2");
 const AP_3 = document.getElementById("ap_3");
 const SEND_BUTTON = document.getElementById("send-button");
 const INPUT = document.getElementById("input");
-
+const HTTPS_WARN = document.getElementById("https-warn")
 const PREFIX = "http://94.172.33.134:4921/noita?";
+
+if (window.location.href.startsWith("https:")) {
+	HTTPS_WARN.style.display = "block";
+}
 
 const MATERIAL_NAMES = {
 	water: "Water",
