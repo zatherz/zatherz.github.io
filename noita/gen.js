@@ -9,6 +9,10 @@ const INPUT = document.getElementById("input");
 const HTTPS_WARN = document.getElementById("https-warn")
 const PREFIX = "http://94.172.33.134:4921/noita?";
 
+INPUT.addEventListener("keyup", function(event) {
+	if (event.keyCode === 13) SEND_BUTTON.click();
+});
+
 if (window.location.href.startsWith("https:")) {
 	HTTPS_WARN.style.display = "block";
 }
