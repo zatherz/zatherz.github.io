@@ -7,7 +7,7 @@ const AP_3 = document.getElementById("ap_3");
 const SEND_BUTTON = document.getElementById("send-button");
 const INPUT = document.getElementById("input");
 
-const PREFIX = "http://94.172.33.134:4921/noita?";
+const PREFIX = "https://noita.zatherz.eu:4921/noita?";
 
 const MATERIAL_NAMES = {
 	water: "Water",
