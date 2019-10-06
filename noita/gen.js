@@ -9,12 +9,15 @@ const AP_PROB  = document.getElementById("ap_prob");
 const SEND_BUTTON = document.getElementById("send-button");
 const INPUT = document.getElementById("input");
 const HTTPS_WARN = document.getElementById("https-warn")
+const CACHE_WARN = document.getElementById("cache-warn")
 const PERMALINK = document.getElementById("permalink")
 const COPY_BUTTON = document.getElementById("copy")
 const PREFIX = "http://94.172.33.134:4921/noita?";
 
 const URL_PARAMS = new URLSearchParams(window.location.search);
 const SEED_PARAM = URL_PARAMS.get('seed');
+
+CACHE_WARN.style.display = "none";
 
 let cur_seed = SEED_PARAM;
 
