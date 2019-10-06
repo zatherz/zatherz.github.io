@@ -1,10 +1,22 @@
 const LC_1 = document.getElementById("lc_1");
+const LC_1_UNOB = document.getElementById("lc_1_unob");
+const LC_1_FLASK = document.getElementById("lc_1_flask");
 const LC_2 = document.getElementById("lc_2");
+const LC_2_UNOB = document.getElementById("lc_2_unob");
+const LC_2_FLASK = document.getElementById("lc_2_flask");
 const LC_3 = document.getElementById("lc_3");
+const LC_3_UNOB = document.getElementById("lc_3_unob");
+const LC_3_FLASK = document.getElementById("lc_3_flask");
 const LC_PROB  = document.getElementById("lc_prob");
 const AP_1 = document.getElementById("ap_1");
+const AP_1_UNOB = document.getElementById("ap_1_unob");
+const AP_1_FLASK = document.getElementById("ap_1_flask");
 const AP_2 = document.getElementById("ap_2");
+const AP_2_UNOB = document.getElementById("ap_2_unob");
+const AP_2_FLASK = document.getElementById("ap_2_flask");
 const AP_3 = document.getElementById("ap_3");
+const AP_3_UNOB = document.getElementById("ap_3_unob");
+const AP_3_FLASK = document.getElementById("ap_3_flask");
 const AP_PROB  = document.getElementById("ap_prob");
 const SEND_BUTTON = document.getElementById("send-button");
 const INPUT = document.getElementById("input");
@@ -72,10 +84,25 @@ const MATERIAL_NAMES = {
 	fungi: "Fungus"
 }
 
+const UNOBTAINABLE_MATERIALS = [
+	"urine", "silver"
+]
+
+const FLASK_ONLY_MATERIALS = [
+	"urine"
+]
+
 function name(mat) {
 	let name_base = MATERIAL_NAMES[mat];
 	if (!name_base.includes("(")) name_base += " (mat_" + mat + ")";
 	return name_base;
+}
+
+function setWarn(mat, unob_node, flask_node) {
+	unob_node.style.display = "none";
+	flask_node.style.display = "none";
+	if (UNOBTAINABLE_MATERIALS.includes(mat)) unob_node.style.display = "inline";
+	if (FLASK_ONLY_MATERIALS.includes(mat)) flask_node.style.display = "inline";
 }
 
 SEND_BUTTON.addEventListener("click", function() {
@@ -101,13 +128,19 @@ function reqSeed(seed) {
 
 		LC_PROB.innerText = lc[1];
 		LC_1.innerText = name(lc[2]);
+		setWarn(lc[2], LC_1_UNOB, LC_1_FLASK);
 		LC_2.innerText = name(lc[3]);
+		setWarn(lc[3], LC_2_UNOB, LC_2_FLASK);
 		LC_3.innerText = name(lc[4]);
+		setWarn(lc[4], LC_3_UNOB, LC_3_FLASK);
 
 		AP_PROB.innerText = ap[1];
 		AP_1.innerText = name(ap[2]);
+		setWarn(ap[2], AP_1_UNOB, AP_1_FLASK);
 		AP_2.innerText = name(ap[3]);
+		setWarn(ap[3], AP_2_UNOB, AP_2_FLASK);
 		AP_3.innerText = name(ap[4]);
+		setWarn(ap[4], AP_3_UNOB, AP_3_FLASK);
 	});
 	req.open("GET", PREFIX + seed + "&hey_you_reading_this_you_will_find_literally_nothing_and_just_waste_your_time");
 	req.send();
@@ -124,9 +157,9 @@ if (SEED_PARAM != null) {
 
 function makeShort() {
 	let s = "Seed: " + cur_seed + "\n";
-	s += "LC: " + LC_1.innerText + ", " + LC_2.innerText + ", " + LC_3.innerText + " (probability " + LC_PROB.innerText + ")";
+	s += "LC: " + LC_1.innerText + ", " + LC_2.innerText + ", " + LC_3.innerText + " [probability " + LC_PROB.innerText + "%]";
 	s += "\n";
-	s += "AP: " + AP_1.innerText + ", " + AP_2.innerText + ", " + AP_3.innerText + " (probability " + AP_PROB.innerText + ")";
+	s += "AP: " + AP_1.innerText + ", " + AP_2.innerText + ", " + AP_3.innerText + " [probability " + AP_PROB.innerText + "%]";
 	return s;
 }
 
