@@ -7,7 +7,11 @@ const AP_3 = document.getElementById("ap_3");
 const SEND_BUTTON = document.getElementById("send-button");
 const INPUT = document.getElementById("input");
 const HTTPS_WARN = document.getElementById("https-warn")
+const PERMALINK = document.getElementById("permalink")
 const PREFIX = "http://94.172.33.134:4921/noita?";
+
+const URL_PARAMS = new URLSearchParams(window.location.search);
+const SEED_PARAM = URL_PARAMS.get('seed');
 
 INPUT.addEventListener("keyup", function(event) {
 	if (event.keyCode === 13) SEND_BUTTON.click();
@@ -70,7 +74,11 @@ SEND_BUTTON.addEventListener("click", function() {
 	console.log("SEED: " + INPUT.value);
 	let seed = INPUT.value;
 	if (seed == null) seed = INPUT.value = "0";
+	reqSeed(seed);
+})
 
+function reqSeed(seed) {
+	setPermalink(seed);
 	let req = new XMLHttpRequest();
 	req.addEventListener("load", function() {
 		console.log(this.responseText);
@@ -92,4 +100,14 @@ SEND_BUTTON.addEventListener("click", function() {
 	});
 	req.open("GET", PREFIX + seed + "&hey_you_reading_this_you_will_find_literally_nothing_and_just_waste_your_time");
 	req.send();
-})
+}
+
+function setPermalink(seed) {
+	PERMALINK.href = "/noita/?seed=" + seed;
+}
+
+if (SEED_PARAM != null) {
+	reqSeed(SEED_PARAM);
+	INPUT.value = SEED_PARAM;
+}
+
