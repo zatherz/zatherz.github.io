@@ -37,13 +37,15 @@
 	<div style="height: 2em"></div>
 
 	<div id=output>
-		<h4> Lively Concoction </h4>
+		<h3> Lively Concoction </h3>
+		<h4> Probability: <span id=lc_prob>0</span> <a href="#prob_experiment">(?)</a> </h4>
 		<ul>
 			<li id=lc_1> One </li>
 			<li id=lc_2> Two </li>
 			<li id=lc_3> Three </li>
 		</ul>
-		<h4> Alchemic Precursor </h4>
+		<h3> Alchemic Precursor </h3>
+		<h4> Probability: <span id=ap_prob>0</span> <a href="#prob_experiment">(?)</a> </h4>
 		<ul>
 			<li id=ap_1> One </li>
 			<li id=ap_2> <a href="https://github.com/noitaommel">Two</a> </li>
@@ -53,6 +55,9 @@
 
 
   <h3> Explanation </h3>
+  <p id=prob_experiment>
+    <strong> (06.10.2019) EXPERIMENT: </strong> I discovered that one of two random numbers that I previously didn't know the purpose of are used in the 'probability' field of a reaction. I'm not sure whether this means the probability of these elements turning into the target or the probability of them just disappearing without doing anything, but I thought it might be useful to include this in the site. As this is very fresh, it might be inaccurate.
+  </p>
   <p>
     There are currently only two materials in the game that are hardcoded to be random (based on the world seed) - Lively Connoction and Alchemic Precursor.
     This site was made using reverse engineered knowledge. It uses the exact same algorithm that the game uses to generate the lists of ingredients necessary.

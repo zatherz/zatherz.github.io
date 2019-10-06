@@ -1,9 +1,11 @@
 const LC_1 = document.getElementById("lc_1");
 const LC_2 = document.getElementById("lc_2");
 const LC_3 = document.getElementById("lc_3");
+const LC_PROB  = document.getElementById("lc_prob");
 const AP_1 = document.getElementById("ap_1");
 const AP_2 = document.getElementById("ap_2");
 const AP_3 = document.getElementById("ap_3");
+const AP_PROB  = document.getElementById("ap_prob");
 const SEND_BUTTON = document.getElementById("send-button");
 const INPUT = document.getElementById("input");
 const HTTPS_WARN = document.getElementById("https-warn")
@@ -94,13 +96,15 @@ function reqSeed(seed) {
 		var lc = split[0].split(",");
 		var ap = split[1].split(",");
 
-		LC_1.innerText = name(lc[1]);
-		LC_2.innerText = name(lc[2]);
-		LC_3.innerText = name(lc[3]);
+		LC_PROB.innerText = lc[1];
+		LC_1.innerText = name(lc[2]);
+		LC_2.innerText = name(lc[3]);
+		LC_3.innerText = name(lc[4]);
 
-		AP_1.innerText = name(ap[1]);
-		AP_2.innerText = name(ap[2]);
-		AP_3.innerText = name(ap[3]);
+		AP_PROB.innerText = ap[1];
+		AP_1.innerText = name(ap[2]);
+		AP_2.innerText = name(ap[3]);
+		AP_3.innerText = name(ap[4]);
 	});
 	req.open("GET", PREFIX + seed + "&hey_you_reading_this_you_will_find_literally_nothing_and_just_waste_your_time");
 	req.send();
@@ -117,9 +121,9 @@ if (SEED_PARAM != null) {
 
 function makeShort() {
 	let s = "Seed: " + cur_seed + "\n";
-	s += "LC: " + LC_1.innerText + ", " + LC_2.innerText + ", " + LC_3.innerText;
+	s += "LC: " + LC_1.innerText + ", " + LC_2.innerText + ", " + LC_3.innerText + " (probability " + LC_PROB.innerText + ")";
 	s += "\n";
-	s += "AP: " + AP_1.innerText + ", " + AP_2.innerText + ", " + AP_3.innerText;
+	s += "AP: " + AP_1.innerText + ", " + AP_2.innerText + ", " + AP_3.innerText + " (probability " + AP_PROB.innerText + ")";
 	return s;
 }
 
