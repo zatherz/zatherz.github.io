@@ -116,9 +116,9 @@ if (SEED_PARAM != null) {
 }
 
 function makeShort() {
-	let s = "Seed: " + cur_seed + "; ";
+	let s = "Seed: " + cur_seed + "\n";
 	s += "LC: " + LC_1.innerText + ", " + LC_2.innerText + ", " + LC_3.innerText;
-	s += "; ";
+	s += "\n";
 	s += "AP: " + AP_1.innerText + ", " + AP_2.innerText + ", " + AP_3.innerText;
 	return s;
 }
