@@ -8,10 +8,13 @@ const SEND_BUTTON = document.getElementById("send-button");
 const INPUT = document.getElementById("input");
 const HTTPS_WARN = document.getElementById("https-warn")
 const PERMALINK = document.getElementById("permalink")
+const COPY_BUTTON = document.getElementById("copy")
 const PREFIX = "http://94.172.33.134:4921/noita?";
 
 const URL_PARAMS = new URLSearchParams(window.location.search);
 const SEED_PARAM = URL_PARAMS.get('seed');
+
+let cur_seed = SEED_PARAM;
 
 INPUT.addEventListener("keyup", function(event) {
 	if (event.keyCode === 13) SEND_BUTTON.click();
@@ -78,6 +81,7 @@ SEND_BUTTON.addEventListener("click", function() {
 })
 
 function reqSeed(seed) {
+	cur_seed = seed;
 	setPermalink(seed);
 	let req = new XMLHttpRequest();
 	req.addEventListener("load", function() {
@@ -111,3 +115,23 @@ if (SEED_PARAM != null) {
 	INPUT.value = SEED_PARAM;
 }
 
+function makeShort() {
+	let s = "Seed: " + cur_seed + "; ";
+	s += "LC: " + LC_1.innerText + ", " + LC_2.innerText + ", " + LC_3.innerText;
+	s += "; ";
+	s += "AP: " + AP_1.innerText + ", " + AP_2.innerText + ", " + AP_3.innerText;
+	return s;
+}
+
+COPY_BUTTON.addEventListener("click", function() {
+	let shortRecipes = makeShort();
+	console.log(shortRecipes);
+	let textArea = document.createElement("textarea");
+	textArea.value = shortRecipes;
+	//textArea.style.display = "none";
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+	console.log(document.execCommand("copy"));
+	document.body.removeChild(textArea);
+});
